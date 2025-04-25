@@ -5,7 +5,7 @@ for i in range(dimension):
         if i == 0 or i == dimension-1:
             print("x"*dimension,end="")
             break
-        if j == 0 or j == dimension-1 or j == i or j == dimension-i-1:
+        if j == 0 or j == dimension-1 or j == i or j+i == dimension-1:
             print("x",end="")
         else:
             print(" ",end="")
@@ -13,6 +13,7 @@ for i in range(dimension):
         
 
 '''
+Ejemplos
 dimension = 5
 xxxxx
 xx xx
@@ -28,6 +29,4 @@ x  x  x
 x x x x
 xx   xx
 xxxxxxx
-
-
 '''
