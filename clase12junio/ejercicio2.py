@@ -1,5 +1,19 @@
 import os
 from colorama import Fore, Style
+import sys
+sys.path.append('/home/jordicido/Documents/github.com/jordicido/MPOFebrero2025/clase19junio')
+# import importlib
+# module = importlib.import_module("../clase19junio")
+
+from lectura import leer_entero, leer_string
+from escritura import imprimir, imprimir_con_marco
+
+colores_mensajes = {
+    "ERROR": Fore.LIGHTRED_EX,
+    "MENU": Fore.BLUE,
+    "INPUT": Fore.LIGHTYELLOW_EX,
+    "SUCCESS": Fore.LIGHTGREEN_EX
+}
 
 def listar_archivos(ruta):
     try:
@@ -48,49 +62,46 @@ def colorear(color):
 def main():
     opcion = -1
     while opcion != 5:
-        print("### MENU ###")
-        print("1. Listar archivos")
-        print("2. Verificar existencia archivo")
-        print("3. Crear archivo")
-        print("4. Crear directorio")
-        print("5. Salir")
+        menu = "MENU\n1. Listar archivos\n2. Verificar existencia archivo\n3. Crear archivo\n4. Crear directorio\n5. Salir"
+    
+        imprimir_con_marco(menu, colores_mensajes["MENU"])
 
-        opcion = int(input("Escoge una opción:\n"))
+        opcion = leer_entero("Introduce una opción:", colores_mensajes["INPUT"])
 
         if opcion == 1:
-            ruta = input("Introduce la ruta que quieres consultar:\n")
+            ruta = leer_string("Introduce la ruta que quieres consultar:", colores_mensajes["INPUT"])
             try:
                 archivos = listar_archivos(ruta)
                 for archivo in archivos:
-                    print(colorear(color_segun_extension(ruta, archivo)) + archivo + Style.RESET_ALL)
+                    imprimir(archivo, colorear(color_segun_extension(ruta, archivo)))
 
             except FileNotFoundError:
-                print(f"La ruta {ruta} no existe")
+                imprimir(f"La ruta {ruta} no existe", colores_mensajes["ERROR"])
             except:
-                print("Error al consultar la ruta, intenta de nuevo") 
+                imprimir("Error al consultar la ruta, intenta de nuevo", colores_mensajes["ERROR"]) 
             
         elif opcion == 2:
-            archivo = input("Qué archivo quieres comprobar?\n")
+            archivo = leer_string("Qué archivo quieres comprobar?\n")
             if existe_archivo(archivo):
-                print("✅ Archivo existe, el pueblo resiste")
+                imprimir(f"El archivo {archivo} existe", colores_mensajes["SUCCESS"])
             else:
-                print("❌ El archivo no existe")
+                imprimir(f"El archivo {archivo} no existe", colores_mensajes["ERROR"])
         elif opcion == 3:
-            nombre = input("Qué nombre quieres ponerle al archivo?\n")
+            nombre = leer_string("Qué nombre quieres ponerle al archivo?", colores_mensajes["INPUT"])
             if existe_archivo(nombre):
-                print("Este archivo ya existe")
+                imprimir(f"Este archivo {archivo} ya existe", colores_mensajes["ERROR"])
             else:
                 archivo = crear_archivo(nombre)
-                print(f"Archivo {archivo.name} creado con éxito")
+                imprimir(f"Archivo {archivo.name} creado con éxito", colores_mensajes["SUCCESS"])
         elif opcion == 4:
-            nombre = input("Qué nombre quieres ponerle al directorio?\n")
+            nombre = leer_string("Qué nombre quieres ponerle al directorio?", colores_mensajes["INPUT"])
             try:
                 crear_directorio(nombre)
-                print(f"Directorio {nombre} creado con éxito")
+                imprimir(f"Directorio {nombre} creado con éxito", colores_mensajes["SUCCESS"])
             except FileExistsError:
-                print(f"El directorio {nombre} ya existe")
+                imprimir(f"El directorio {nombre} ya existe", colores_mensajes["ERROR"])
         elif opcion > 5:
-            print("Opción no válida")
+            imprimir("Opción no válida", colores_mensajes["ERROR"])
 
 
 if __name__ == '__main__':
