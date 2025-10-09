@@ -110,9 +110,6 @@ def main():
                 except Exception as e:
                     print(e)
 
-            case "6":
-                exit()
-                
             case _:
                 print("El valor enviado debe ser entre 1 y 6")
         
