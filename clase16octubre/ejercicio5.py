@@ -6,10 +6,11 @@ def replace_word(path, word_to_replace, new_word):
     if len(word_to_replace) == 0:
         raise ValueError("La palabra a reemplazar no puede ser vacía")
 
-    with open(path, "r+") as file:
+    with open(path, "r") as file:
         text = file.read()
-        file.seek(0)
         text = text.replace(word_to_replace, new_word)
+
+    with open(path, "w") as file:
         file.write(text)
 
 
