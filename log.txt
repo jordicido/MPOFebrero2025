@@ -1,0 +1,3 @@
+2025-10-30T17:27:47 Se ha intentado loguear el usuario jordi pero HA FALLADO EL PASSWORD
+2025-10-30T17:27:53 Se ha intentado loguear un usuario NO EXISTENTE con nombre fer
+2025-10-30T17:28:05 Se ha logueado EXISTOSAMENTE el usuario asires
