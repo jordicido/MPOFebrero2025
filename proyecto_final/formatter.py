@@ -3,8 +3,8 @@
 '''
 Tiempo del dia:
 |==============================|
-|Valencia - Spain  |           |
-|===================   icono   |
+|City - Country    |           |
+|===================   icon    |
 | Temp max         |           |
 | Temp min          ===========|
 | Sunrise                      |

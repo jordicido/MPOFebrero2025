@@ -10,16 +10,16 @@ def main():
             option = read_menu_option()
             match option:
                 case 1:
-                    # Primero pedir ciudad
-                    # Llamar API geolocalización
-                    # Llamar API forecast
-                    # Formatear e imprimir salida
                     city = input_city()
                     lat, long, country = get_geolocation(city)
-                    max_temp, min_temp = get_forecast(lat, long)
+                    fore_data = get_forecast(lat, long)
                     print(f"Tiempo de la ciudad: {city} País: {country}")
-                    print(f"Temperatura máxima de hoy: {max_temp}")
-                    print(f"Temperatura mínima de hoy: {min_temp}")
+                    print(f"Temperatura máxima de hoy: {fore_data["temp_max"]}")
+                    print(f"Temperatura mínima de hoy: {fore_data["temp_min"]}")
+                    print(f"Hora del amanecer: {fore_data["sunrise"]}")
+                    print(f"Hora del anochecer: {fore_data["sunset"]}")
+                    print(f"Probabilidad de lluvia: {fore_data["prec_prob"]}%")
+
 
                 case 0:
                     break
