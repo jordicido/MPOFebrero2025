@@ -14,3 +14,6 @@ def read_menu_option():
     if not option.isdigit():
         raise ValueError("Tienes que escoger una opción numérica válida")
     return int(option)
+
+def input_city():
+    return input("Qué ciudad quieres consultar?\n").strip()
