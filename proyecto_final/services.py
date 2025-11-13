@@ -1,0 +1,1 @@
+# Conexión con las APIs (geocoding y meteorología)
