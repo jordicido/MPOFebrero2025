@@ -2,6 +2,7 @@
 
 from cli import *
 from services import *
+from models.forecastDaily import ForecastDaily
 
 def main():
     while True:
@@ -14,11 +15,11 @@ def main():
                     lat, long, country = get_geolocation(city)
                     fore_data = get_forecast(lat, long)
                     print(f"Tiempo de la ciudad: {city} País: {country}")
-                    print(f"Temperatura máxima de hoy: {fore_data["temp_max"]}")
-                    print(f"Temperatura mínima de hoy: {fore_data["temp_min"]}")
-                    print(f"Hora del amanecer: {fore_data["sunrise"]}")
-                    print(f"Hora del anochecer: {fore_data["sunset"]}")
-                    print(f"Probabilidad de lluvia: {fore_data["prec_prob"]}%")
+                    print(f"Temperatura máxima de hoy: {fore_data.daily.temperature_2m_max}")
+                    print(f"Temperatura mínima de hoy: {fore_data.daily.temperature_2m_min}")
+                    print(f"Hora del amanecer: {fore_data.daily.sunrise}")
+                    print(f"Hora del anochecer: {fore_data.daily.sunset}")
+                    print(f"Probabilidad de lluvia: {fore_data.daily.precipitation_probability_max}%")
 
 
                 case 0:
