@@ -14,8 +14,8 @@ def get_geolocation(city):
     else:
         raise requests.HTTPError("The API can't be accessed")
 
-def get_forecast(latitude, longitude):
-    response = requests.get(API_FORE, {"latitude":latitude, "longitude":longitude, "daily":"weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max", "timezone":"auto", "forecast_days":1})
+def get_forecast(latitude, longitude, days=1):
+    response = requests.get(API_FORE, {"latitude":latitude, "longitude":longitude, "daily":"weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max", "timezone":"auto", "forecast_days":days})
     if response.status_code == 200:
         data = response.json()
         result = ForecastDaily(**data)

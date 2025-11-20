@@ -2,7 +2,7 @@
 
 from cli import *
 from services import *
-from models.forecastDaily import ForecastDaily
+from formatter import *
 
 def main():
     while True:
@@ -14,7 +14,13 @@ def main():
                     city = input_city()
                     lat, long, country = get_geolocation(city)
                     fore_data = get_forecast(lat, long)
+                    print_forecast(print_today_weather(fore_data, city, country))
 
+                case 2:
+                    city = input_city()
+                    lat, long, country = get_geolocation(city)
+                    fore_data = get_forecast(lat, long, 3)
+                    print_forecast(print_daily_weather(fore_data, city, country, 3))
 
                 case 0:
                     break

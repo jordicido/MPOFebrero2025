@@ -17,3 +17,6 @@ def read_menu_option():
 
 def input_city():
     return input("Qué ciudad quieres consultar?\n").strip()
+
+def print_forecast(forecast):
+    print(forecast)
