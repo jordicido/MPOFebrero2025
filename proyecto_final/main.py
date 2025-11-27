@@ -11,6 +11,15 @@ def main():
             option = read_menu_option()
             match option:
                 case 1:
+                    '''
+                        Mirar si existe ubicación en preferences.json -> get_location()
+                        si no existe
+                            pedimos city
+                            guardamos ubicacion -> set_location(city, country, latitude, longitude)
+                        
+                        consultar datos
+                            
+                    '''
                     city = input_city()
                     lat, long, country = get_geolocation(city)
                     fore_data = get_forecast(lat, long)
