@@ -1,6 +1,7 @@
 from typing import Optional, List
+from dataclasses import dataclass
 
-
+@dataclass
 class Result:
     id: Optional[int]
     name: Optional[str]
@@ -41,8 +42,8 @@ class Result:
         self.admin2 = admin2
         self.admin3 = admin3
 
-
-class ForecastDaily:
+@dataclass
+class Geocoding:
     results: Optional[List[Result]]
     generationtime_ms: Optional[float]
 

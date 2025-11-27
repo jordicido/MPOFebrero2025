@@ -2,6 +2,7 @@
 import requests
 
 from models.forecastDaily import ForecastDaily
+from models.geocoding import Geocoding
 
 API_GEO = "https://geocoding-api.open-meteo.com/v1/search"
 API_FORE = "https://api.open-meteo.com/v1/forecast"
@@ -10,8 +11,9 @@ API_FORE = "https://api.open-meteo.com/v1/forecast"
 def get_geolocation(city, country_code="ES"):
     response = requests.get(API_GEO, {"name":city, "count":1, "countryCode": country_code, "language": "es"})
     if response.status_code == 200:
-        data = response.json()["results"]
-        return data[0]["latitude"], data[0]["longitude"], data[0]["country"]
+        data = response.json()
+        result = Geocoding(**data)
+        return result
     else:
         raise requests.HTTPError("The API can't be accessed")
 

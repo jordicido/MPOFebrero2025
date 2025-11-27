@@ -3,6 +3,7 @@
 from cli import *
 from services import *
 from formatter import *
+from set_up import *
 
 def main():
     while True:
@@ -21,9 +22,11 @@ def main():
                             
                     '''
                     city = input_city()
-                    lat, long, country = get_geolocation(city)
-                    fore_data = get_forecast(lat, long)
-                    print_forecast(print_today_weather(fore_data, city, country))
+                    result = get_geolocation(city)
+                    print(result.results[0].name)
+                    set_location(result.name, result.country, result.latitude, result.longitude)
+                    fore_data = get_forecast(result.latitude, result.longitude)
+                    print_forecast(print_today_weather(fore_data, result.name, result.country))
 
                 case 2:
                     city = input_city()
