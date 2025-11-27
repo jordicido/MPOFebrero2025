@@ -1,12 +1,17 @@
 import json
 
 def get_location():
-    pass
+    with open("preferences.json", "r") as file:
+        result = json.load(file)
+        if "location" in result:
+            return result["location"]
+        
+        return None
 
 def set_location(city, country, latitude, longitude):
     location_data = {
         "location": {
-            "city": city,
+            "name": city,
             "country": country,
             "latitude": latitude,
             "longitude": longitude
