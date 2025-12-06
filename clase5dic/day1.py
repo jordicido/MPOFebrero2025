@@ -36,18 +36,24 @@ def part2(input):
         rotation = line[0] 
         number = int(line[1:]) 
         if rotation == "R":
-            dial = (dial+number)%100
+            dial += number
+            if dial > 99:
+                result += dial//100
+                dial %= 100
         else:
-            dial = (dial-number)%100
-        
-        if dial == 0:
-            result += 1
+            if dial == 0:
+                result -= 1
+            dial -= number
+            if dial <= 0:
+                result += (dial//-100)+1
+                dial %= 100
 
 
     return result
 
 input = list()
-with open("clase5dic/day1.txt", "r") as f:
+with open("clase5dic/input/day1.txt", "r") as f:
     input = f.readlines()
 
 print(f"Part 1: {part1(input)}")
+print(f"Part 2: {part2(input)}")
